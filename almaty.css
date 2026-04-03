@@ -74,7 +74,6 @@ body {
   padding: 28px 24px;
 }
 
-/* Кнопка назад */
 .back-btn {
   background: none;
   border: 1px solid #cbd5e1;
@@ -90,7 +89,6 @@ body {
   background: #f1f5f9;
 }
 
-/* Заголовок страницы */
 .district-header {
   margin-bottom: 28px;
   display: flex;
@@ -111,7 +109,6 @@ body {
   margin-top: 4px;
 }
 
-/* Бейдж города */
 .city-badge {
   background: linear-gradient(135deg, #3b82f6, #1e40af);
   color: white;
@@ -123,7 +120,6 @@ body {
   vertical-align: middle;
 }
 
-/* Кнопка обновления */
 .btn-update {
   background: #2e7d32;
   color: white;
@@ -139,7 +135,6 @@ body {
   background: #1b5e20;
 }
 
-/* Графики */
 .chart-box {
   background: white;
   border-radius: 24px;
@@ -160,7 +155,6 @@ canvas {
   width: 100%;
 }
 
-/* KPI секция */
 .kpi-section {
   background: white;
   border-radius: 24px;
@@ -211,7 +205,6 @@ canvas {
   margin-right: 8px;
 }
 
-/* Сводка по районам (для страницы города) */
 .districts-summary {
   background: white;
   border-radius: 24px;
@@ -226,7 +219,6 @@ canvas {
   font-weight: 600;
 }
 
-/* Карточки районов (сетка) */
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -269,7 +261,6 @@ canvas {
   font-weight: 700;
 }
 
-/* Бейджи приоритета */
 .priority-badge {
   display: inline-block;
   padding: 4px 10px;
@@ -293,7 +284,6 @@ canvas {
   color: #2e7d32;
 }
 
-/* AI секция */
 .ai-section {
   background: white;
   border-radius: 24px;
@@ -387,7 +377,6 @@ canvas {
   margin-left: 8px;
 }
 
-/* Анимация загрузки */
 .loading-spinner {
   width: 40px;
   height: 40px;
@@ -407,7 +396,6 @@ canvas {
   }
 }
 
-/* Адаптив */
 @media (max-width: 700px) {
   .container {
     padding: 16px;

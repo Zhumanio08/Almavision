@@ -118,7 +118,6 @@ body {
   transition: 0.2s;
 }
 
-/* Кнопка общей статистики города */
 .btn-city-stats {
   background: linear-gradient(135deg, #38863c, #0c4b36);
   color: white;
@@ -149,14 +148,12 @@ body {
   background: #1b5e20;
 }
 
-/* Сетка карточек */
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 28px;
 }
 
-/* Карточка */
 .district-card {
   background: white;
   border-radius: 24px;
@@ -174,7 +171,6 @@ body {
   box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.15);
 }
 
-/* Изображение */
 .card-image {
   width: 100%;
   height: 180px;
@@ -182,7 +178,6 @@ body {
   display: block;
 }
 
-/* Название района */
 .card-title {
   padding: 16px 16px 8px 16px;
   font-size: 1.3rem;
@@ -190,7 +185,6 @@ body {
   color: #0f172a;
 }
 
-/* Блок статистики (появляется при наведении) */
 .card-stats {
   position: absolute;
   bottom: 0;
@@ -252,7 +246,6 @@ body {
   color: #2e7d32;
 }
 
-/* Адаптив */
 @media (max-width: 700px) {
   .container {
     padding: 16px;

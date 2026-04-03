@@ -1,7 +1,5 @@
-// ==================== API KEY GROQ ====================
-const GROQ_API_KEY = "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"; // ВСТАВЬТЕ ВАШ КЛЮЧ ОТ GROQ
+const GROQ_API_KEY = "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";
 
-// ==================== ДАННЫЕ РАЙОНА ====================
 const DISTRICT_NAME = "Алатауский";
 const TIME_LABELS = [
   "08:00",
@@ -20,7 +18,6 @@ let timeSeries = null;
 let transportChart = null;
 let ecoChart = null;
 
-// ==================== ГЕНЕРАЦИЯ ДАННЫХ ====================
 function generateWithPeak(hourIdx, baseMin, baseMax) {
   let peakMultiplier = 1.0;
   if (hourIdx === 0 || hourIdx === 1) peakMultiplier = 0.8;
@@ -99,7 +96,6 @@ function generateAllData() {
   timeSeries = generateTimeSeries();
 }
 
-// ==================== ФОРМИРОВАНИЕ ПРОМПТА (ТОЛЬКО ЛАТИНИЦА И ЦИФРЫ ДЛЯ БЕЗОПАСНОСТИ) ====================
 function buildPromptForAI() {
   const m = currentMetrics;
   const ts = timeSeries;
@@ -114,7 +110,6 @@ function buildPromptForAI() {
     ts.congestion.slice(5, 7).reduce((a, b) => a + b, 0) / 2
   ).toFixed(0);
 
-  // Используем только безопасные символы для промпта
   return `Analyze district "${DISTRICT_NAME}" data and give mayor advice in RUSSIAN language.
 
 CURRENT METRICS:
@@ -151,7 +146,6 @@ Answer in RUSSIAN language with this structure:
 [Brief forecast]`;
 }
 
-// ==================== ЗАПРОС К GROQ API ====================
 let lastRequestTime = 0;
 const MIN_REQUEST_INTERVAL = 3000;
 
@@ -169,7 +163,6 @@ async function getAIAdvice() {
     return;
   }
 
-  // Защита от слишком частых запросов
   const now = Date.now();
   const timeSinceLast = now - lastRequestTime;
 
@@ -188,7 +181,6 @@ async function getAIAdvice() {
 
   lastRequestTime = now;
 
-  // Показываем загрузку
   container.innerHTML = `
         <div class="ai-advice-content">
             <div class="advice-header">🤖 Анализ данных...</div>
@@ -201,7 +193,6 @@ async function getAIAdvice() {
 
   const prompt = buildPromptForAI();
 
-  // Формируем тело запроса в виде строки JSON вручную, чтобы избежать проблем с кодировкой
   const requestBody = {
     model: "llama-3.3-70b-versatile",
     messages: [
@@ -220,7 +211,6 @@ async function getAIAdvice() {
   };
 
   try {
-    // Используем правильную кодировку UTF-8
     const response = await fetch(
       "https://api.groq.com/openai/v1/chat/completions",
       {
@@ -259,7 +249,6 @@ async function getAIAdvice() {
       throw new Error("Unexpected API response format");
     }
 
-    // Форматируем ответ
     const formattedResponse = aiResponse
       .replace(/\n/g, "<br>")
       .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
@@ -305,7 +294,6 @@ async function getAIAdvice() {
   }
 }
 
-// ==================== ОТРИСОВКА KPI ====================
 function renderKPI() {
   const m = currentMetrics;
   const kpiGrid = document.getElementById("kpiGrid");
@@ -384,7 +372,6 @@ function renderKPI() {
     .join("");
 }
 
-// ==================== ГРАФИКИ ====================
 function destroyCharts() {
   if (transportChart) {
     transportChart.destroy();
@@ -482,7 +469,6 @@ function renderCharts() {
   });
 }
 
-// ==================== ОБНОВЛЕНИЕ ====================
 function refreshAll() {
   generateAllData();
   renderKPI();
@@ -493,7 +479,6 @@ function refreshAll() {
   }
 }
 
-// ==================== ДОБАВЛЯЕМ СТИЛИ ====================
 function addStyles() {
   const style = document.createElement("style");
   style.textContent = `
@@ -528,7 +513,6 @@ function addStyles() {
   document.head.appendChild(style);
 }
 
-// ==================== ИНИЦИАЛИЗАЦИЯ ====================
 function init() {
   addStyles();
   generateAllData();

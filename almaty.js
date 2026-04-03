@@ -1,4 +1,3 @@
-// ==================== КОНФИГУРАЦИЯ ====================
 const DISTRICTS = [
   "Наурызбайский",
   "Алмалинский",
@@ -21,7 +20,6 @@ const TIME_LABELS = [
   "00:00",
 ];
 
-// МАППИНГ названий районов на латиницу (для имён файлов)
 const DISTRICT_FILE_NAMES = {
   Наурызбайский: "district_nauryzbaiskiy.html",
   Алмалинский: "district_almalinskiy.html",
@@ -33,7 +31,6 @@ const DISTRICT_FILE_NAMES = {
   Жетысуский: "district_zhetysuskiy.html",
 };
 
-// API ключ GROQ
 const GROQ_API_KEY = "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";
 
 let districtData = {};
@@ -42,7 +39,6 @@ let cityMetrics = null;
 let transportChart = null,
   ecoChart = null;
 
-// ==================== ГЕНЕРАЦИЯ ДАННЫХ ====================
 function generateWithPeak(hourIdx, baseMin, baseMax) {
   let peak = 1.0;
   if (hourIdx === 0 || hourIdx === 1) peak = 0.8;
@@ -364,11 +360,9 @@ function renderCharts() {
   });
 }
 
-// ==================== УЛУЧШЕННЫЙ ПРОМПТ ДЛЯ ИИ (АНАЛИЗ ВСЕХ 8 РАЙОНОВ) ====================
 function buildPromptForAI() {
   const m = cityMetrics;
 
-  // Собираем данные по каждому району для детального анализа
   let districtsReport = [];
   let criticalDistricts = [];
   let warningDistricts = [];
@@ -379,7 +373,6 @@ function buildPromptForAI() {
     let status = "normal";
     let issues = [];
 
-    // Анализ загруженности
     if (data.congestion > 75) {
       status = "critical";
       issues.push(`🚦 загруженность ${data.congestion}%`);
@@ -390,7 +383,6 @@ function buildPromptForAI() {
       warningDistricts.push(d);
     }
 
-    // Анализ скорости
     if (data.speed < 25) {
       status = "critical";
       issues.push(`📈 скорость ${data.speed} км/ч`);
@@ -402,7 +394,6 @@ function buildPromptForAI() {
         warningDistricts.push(d);
     }
 
-    // Анализ AQI
     if (data.aqi > 85) {
       status = "critical";
       issues.push(`🌫️ AQI ${data.aqi}`);
@@ -414,7 +405,6 @@ function buildPromptForAI() {
         warningDistricts.push(d);
     }
 
-    // Анализ PM2.5
     if (data.pm25 > 35) {
       status = "critical";
       issues.push(`🧪 PM2.5 ${data.pm25}`);
@@ -423,7 +413,6 @@ function buildPromptForAI() {
       issues.push(`🧪 PM2.5 ${data.pm25}`);
     }
 
-    // Анализ шума
     if (data.noise > 70) {
       issues.push(`🔊 шум ${Math.round(data.noise)} дБ`);
     } else if (data.noise > 60) {
@@ -431,7 +420,6 @@ function buildPromptForAI() {
       issues.push(`🔊 шум ${Math.round(data.noise)} дБ`);
     }
 
-    // Анализ пробочного индекса
     if (data.trafficIndex > 7) {
       issues.push(`📊 пробочный индекс ${data.trafficIndex}/10`);
     } else if (data.trafficIndex > 5) {
@@ -450,7 +438,6 @@ function buildPromptForAI() {
     );
   }
 
-  // Анализ пиковых часов
   const peakCongestion = Math.max(...cityTimeSeries.congestion);
   const peakHourIndex = cityTimeSeries.congestion.indexOf(peakCongestion);
   const peakHour = TIME_LABELS[peakHourIndex];
@@ -461,7 +448,6 @@ function buildPromptForAI() {
     cityTimeSeries.congestion.slice(5, 7).reduce((a, b) => a + b, 0) / 2
   ).toFixed(0);
 
-  // Определение общего статуса города
   let cityStatus = "🟢 СТАБИЛЬНАЯ";
   let urgency = "ПЛАНОВЫЙ МОНИТОРИНГ";
 
@@ -476,7 +462,6 @@ function buildPromptForAI() {
     urgency = "ТРЕБУЕТ МОНИТОРИНГА";
   }
 
-  // Формируем промпт
   return `Ты — ИИ-советник мэра города Алматы. Проанализируй данные по всем 8 районам и дай рекомендации на РУССКОМ языке.
 
 ## 📊 ОБЩАЯ СИТУАЦИЯ ПО ГОРОДУ:

@@ -1,4 +1,3 @@
-// Список районов с названиями и изображениями
 const DISTRICTS = [
   {
     name: "Наурызбайский",
@@ -34,14 +33,11 @@ const DISTRICTS = [
   },
 ];
 
-// Хранилище текущих данных
 let currentData = {};
 
-// Текущие настройки сортировки
-let sortBy = "priority"; // priority, congestion, aqi, name
-let sortOrder = "desc"; // asc или desc
+let sortBy = "priority";
+let sortOrder = "desc";
 
-// Генерация случайных метрик для района
 function generateMetrics() {
   const congestion = Math.floor(Math.random() * 100);
   const aqi = Math.floor(30 + Math.random() * 90);
@@ -52,28 +48,24 @@ function generateMetrics() {
   return { congestion, aqi, priority };
 }
 
-// Обновить данные для всех районов
 function refreshAllData() {
   for (let d of DISTRICTS) {
     currentData[d.name] = generateMetrics();
   }
 }
 
-// Получить класс приоритета для стилей
 function getPriorityClass(priority) {
   if (priority === "high") return "priority-high";
   if (priority === "medium") return "priority-medium";
   return "priority-low";
 }
 
-// Получить текст приоритета
 function getPriorityText(priority) {
   if (priority === "high") return "Высокий";
   if (priority === "medium") return "Средний";
   return "Низкий";
 }
 
-// Сортировка массива районов
 function getSortedDistricts() {
   const districtsCopy = [...DISTRICTS];
   districtsCopy.sort((a, b) => {
@@ -92,7 +84,6 @@ function getSortedDistricts() {
       valA = dataA.aqi;
       valB = dataB.aqi;
     } else {
-      // name
       valA = a.name;
       valB = b.name;
       if (sortOrder === "asc") return valA.localeCompare(valB);
@@ -105,7 +96,6 @@ function getSortedDistricts() {
   return districtsCopy;
 }
 
-// Рендер карточек
 function renderCards() {
   const grid = document.getElementById("cardsGrid");
   if (!grid) return;
@@ -141,12 +131,10 @@ function renderCards() {
     })
     .join("");
 
-  // Навесить обработчики кликов на карточки
   document.querySelectorAll(".district-card").forEach((card) => {
     card.addEventListener("click", (e) => {
       const districtName = card.getAttribute("data-district");
       if (districtName) {
-        // Переход на страницу статистики района
         const fileName = getDistrictFileName(districtName);
         window.location.href = fileName;
       }
@@ -154,7 +142,6 @@ function renderCards() {
   });
 }
 
-// Функция преобразования названия района в имя файла
 function getDistrictFileName(districtName) {
   const map = {
     Наурызбайский: "district_nauryzbaiskiy.html",
@@ -169,19 +156,16 @@ function getDistrictFileName(districtName) {
   return map[districtName] || "vhod.html";
 }
 
-// Обновление дашборда (перегенерация данных, сортировка, перерисовка)
 function refreshDashboard() {
   refreshAllData();
   renderCards();
 }
 
-// Изменить сортировку
 function setSortBy(value) {
   sortBy = value;
   renderCards();
 }
 
-// Переключить порядок сортировки
 function toggleSortOrder() {
   sortOrder = sortOrder === "desc" ? "asc" : "desc";
   const btn = document.getElementById("sortOrderBtn");
@@ -191,7 +175,6 @@ function toggleSortOrder() {
   renderCards();
 }
 
-// Инициализация
 function init() {
   refreshAllData();
   renderCards();
@@ -214,7 +197,6 @@ function init() {
     });
 }
 
-// Кнопка общей статистики города
 const cityStatsBtn = document.getElementById("cityStatsBtn");
 if (cityStatsBtn) {
   cityStatsBtn.addEventListener("click", () => {

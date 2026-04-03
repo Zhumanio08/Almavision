@@ -1,36 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
     <title>Almavision — Дашборд районов</title>
-    <link rel="stylesheet" href="vhod.css">
-</head>
-<body>
+    <link rel="stylesheet" href="vhod.css" />
+  </head>
+  <body>
     <div class="app-bar">
-        <div class="logo-area" id="logoPlace">
-            <img src="BCO.de1526a6-31f9-4310-a98c-7a4d59a73d9e.png" alt="Логотип" class="logo-img">
-            <span class="almavision-title">Almavision</span>
-        </div>
-        <div class="logo-right">Алматы • Управление городом</div>
+      <div class="logo-area" id="logoPlace">
+        <img
+          src="BCO.de1526a6-31f9-4310-a98c-7a4d59a73d9e.png"
+          alt="Логотип"
+          class="logo-img"
+        />
+        <span class="almavision-title">ALMAVISION</span>
+      </div>
+      <div class="logo-right">Алматы • Управление городом</div>
     </div>
 
     <div class="container">
-        <div class="dashboard-header">
-            <h1>🏙️ Районы Алматы</h1>
-            <div class="controls">
-                <select id="sortSelect" class="sort-select">
-                    <option value="priority">Сортировать по приоритету</option>
-                    <option value="congestion">Сортировать по загруженности</option>
-                    <option value="aqi">Сортировать по AQI</option>
-                </select>
-                <button id="refreshDashboardBtn" class="btn-update">🔄 Обновить данные</button>
-            </div>
+      <div class="dashboard-header">
+        <h1>Районы Алматы</h1>
+        <div class="controls">
+          <select id="sortSelect" class="sort-select">
+            <option value="priority">Сортировать по приоритету</option>
+            <option value="congestion">Сортировать по загруженности</option>
+            <option value="aqi">Сортировать по AQI</option>
+          </select>
+          <button id="refreshDashboardBtn" class="btn-update">
+            Обновить данные
+          </button>
         </div>
+      </div>
 
-        <div class="cards-grid" id="cardsGrid"></div>
+      <div class="cards-grid" id="cardsGrid"></div>
     </div>
 
     <script src="vhod.js"></script>
-</body>
+  </body>
 </html>

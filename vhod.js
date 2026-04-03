@@ -1,188 +1,216 @@
 // Список районов с названиями и изображениями
 const DISTRICTS = [
-    { name: "Наурызбайский", img: "https://picsum.photos/id/1015/400/200" },
-    { name: "Алмалинский", img: "https://picsum.photos/id/104/400/200" },
-    { name: "Алатауский", img: "https://picsum.photos/id/15/400/200" },
-    { name: "Турксибский", img: "https://picsum.photos/id/20/400/200" },
-    { name: "Бостандыкский", img: "https://picsum.photos/id/26/400/200" },
-    { name: "Медеуский", img: "https://picsum.photos/id/29/400/200" },
-    { name: "Ауэзовский", img: "https://picsum.photos/id/36/400/200" },
-    { name: "Жетысуский", img: "https://picsum.photos/id/42/400/200" }
+  {
+    name: "Наурызбайский",
+    img: "https://informburo.kz/storage/photos/217/main/PCj04saMsJqreL9KQ9GbG1OXnMEPv6711Rx0cA0O.jpg",
+  },
+  {
+    name: "Алмалинский",
+    img: "https://mitropolia.kz/images/01_cont/88/886/603.jpg",
+  },
+  {
+    name: "Алатауский",
+    img: "https://ticketon.kz/files/media/ledovyj-dvorec-almaty-arena-malaya-arena2.jpg",
+  },
+  {
+    name: "Турксибский",
+    img: "https://avatars.mds.yandex.net/get-altay/14761495/2a0000019ad01e10aedd2d84ee8114b16261/XXXL",
+  },
+  {
+    name: "Бостандыкский",
+    img: "https://sxodim.com/uploads/posts/2023/06/02/optimized/7c5e87252a89aa14f87f4c3b4af2d4ad_1400x790-q-85.jpg",
+  },
+  {
+    name: "Медеуский",
+    img: "https://guideservice.kz/wp-content/uploads/2025/04/medeu-scaled-e1642653334143.jpg",
+  },
+  {
+    name: "Ауэзовский",
+    img: "https://sxodim.com/uploads/posts/2023/05/22/optimized/551648211a889083f91620d73066c56b_1400x790-q-85.jpg",
+  },
+  {
+    name: "Жетысуский",
+    img: "https://someplace.kz/images/barakholka-almaty-samyj-podrobnyj-aktualnyj-obzor-bazarov.jpg",
+  },
 ];
 
 // Хранилище текущих данных
 let currentData = {};
 
 // Текущие настройки сортировки
-let sortBy = "priority";   // priority, congestion, aqi, name
-let sortOrder = "desc";    // asc или desc
+let sortBy = "priority"; // priority, congestion, aqi, name
+let sortOrder = "desc"; // asc или desc
 
 // Генерация случайных метрик для района
 function generateMetrics() {
-    const congestion = Math.floor(Math.random() * 100);
-    const aqi = Math.floor(30 + Math.random() * 90);
-    let priority = "low";
-    if (congestion > 75 || aqi > 85) priority = "high";
-    else if (congestion > 65 || aqi > 60) priority = "medium";
-    
-    return { congestion, aqi, priority };
+  const congestion = Math.floor(Math.random() * 100);
+  const aqi = Math.floor(30 + Math.random() * 90);
+  let priority = "low";
+  if (congestion > 75 || aqi > 85) priority = "high";
+  else if (congestion > 65 || aqi > 60) priority = "medium";
+
+  return { congestion, aqi, priority };
 }
 
 // Обновить данные для всех районов
 function refreshAllData() {
-    for (let d of DISTRICTS) {
-        currentData[d.name] = generateMetrics();
-    }
+  for (let d of DISTRICTS) {
+    currentData[d.name] = generateMetrics();
+  }
 }
 
 // Получить класс приоритета для стилей
 function getPriorityClass(priority) {
-    if (priority === "high") return "priority-high";
-    if (priority === "medium") return "priority-medium";
-    return "priority-low";
+  if (priority === "high") return "priority-high";
+  if (priority === "medium") return "priority-medium";
+  return "priority-low";
 }
 
 // Получить текст приоритета
 function getPriorityText(priority) {
-    if (priority === "high") return "Высокий";
-    if (priority === "medium") return "Средний";
-    return "Низкий";
+  if (priority === "high") return "Высокий";
+  if (priority === "medium") return "Средний";
+  return "Низкий";
 }
 
 // Сортировка массива районов
 function getSortedDistricts() {
-    const districtsCopy = [...DISTRICTS];
-    districtsCopy.sort((a, b) => {
-        let valA, valB;
-        const dataA = currentData[a.name];
-        const dataB = currentData[b.name];
-        
-        if (sortBy === "priority") {
-            const order = { high: 3, medium: 2, low: 1 };
-            valA = order[dataA.priority];
-            valB = order[dataB.priority];
-        } else if (sortBy === "congestion") {
-            valA = dataA.congestion;
-            valB = dataB.congestion;
-        } else if (sortBy === "aqi") {
-            valA = dataA.aqi;
-            valB = dataB.aqi;
-        } else { // name
-            valA = a.name;
-            valB = b.name;
-            if (sortOrder === "asc") return valA.localeCompare(valB);
-            else return valB.localeCompare(valA);
-        }
-        
-        if (sortOrder === "desc") return valB - valA;
-        return valA - valB;
-    });
-    return districtsCopy;
+  const districtsCopy = [...DISTRICTS];
+  districtsCopy.sort((a, b) => {
+    let valA, valB;
+    const dataA = currentData[a.name];
+    const dataB = currentData[b.name];
+
+    if (sortBy === "priority") {
+      const order = { high: 3, medium: 2, low: 1 };
+      valA = order[dataA.priority];
+      valB = order[dataB.priority];
+    } else if (sortBy === "congestion") {
+      valA = dataA.congestion;
+      valB = dataB.congestion;
+    } else if (sortBy === "aqi") {
+      valA = dataA.aqi;
+      valB = dataB.aqi;
+    } else {
+      // name
+      valA = a.name;
+      valB = b.name;
+      if (sortOrder === "asc") return valA.localeCompare(valB);
+      else return valB.localeCompare(valA);
+    }
+
+    if (sortOrder === "desc") return valB - valA;
+    return valA - valB;
+  });
+  return districtsCopy;
 }
 
 // Рендер карточек
 function renderCards() {
-    const grid = document.getElementById("cardsGrid");
-    if (!grid) return;
-    
-    const sortedDistricts = getSortedDistricts();
-    
-    grid.innerHTML = sortedDistricts.map(district => {
-        const data = currentData[district.name];
-        const priorityClass = getPriorityClass(data.priority);
-        const priorityText = getPriorityText(data.priority);
-        
-        return `
+  const grid = document.getElementById("cardsGrid");
+  if (!grid) return;
+
+  const sortedDistricts = getSortedDistricts();
+
+  grid.innerHTML = sortedDistricts
+    .map((district) => {
+      const data = currentData[district.name];
+      const priorityClass = getPriorityClass(data.priority);
+      const priorityText = getPriorityText(data.priority);
+
+      return `
             <div class="district-card" data-district="${district.name}">
                 <img src="${district.img}" alt="${district.name}" class="card-image">
                 <div class="card-title">${district.name}</div>
                 <div class="card-stats">
                     <div class="stat-row">
-                        <span class="stat-label">🚦 Загруженность</span>
+                        <span class="stat-label"> Загруженность</span>
                         <span class="stat-value">${data.congestion}%</span>
                     </div>
                     <div class="stat-row">
-                        <span class="stat-label">🌱 AQI</span>
+                        <span class="stat-label"> AQI</span>
                         <span class="stat-value">${data.aqi}</span>
                     </div>
                     <div class="stat-row">
-                        <span class="stat-label">🎯 Приоритет</span>
+                        <span class="stat-label"> Приоритет</span>
                         <span class="priority-badge ${priorityClass}">${priorityText}</span>
                     </div>
                 </div>
             </div>
         `;
-    }).join("");
-    
-    // Навесить обработчики кликов на карточки
-    document.querySelectorAll(".district-card").forEach(card => {
-        card.addEventListener("click", (e) => {
-            const districtName = card.getAttribute("data-district");
-            if (districtName) {
-                // Переход на страницу статистики района
-                const fileName = getDistrictFileName(districtName);
-                window.location.href = fileName;
-            }
-        });
+    })
+    .join("");
+
+  // Навесить обработчики кликов на карточки
+  document.querySelectorAll(".district-card").forEach((card) => {
+    card.addEventListener("click", (e) => {
+      const districtName = card.getAttribute("data-district");
+      if (districtName) {
+        // Переход на страницу статистики района
+        const fileName = getDistrictFileName(districtName);
+        window.location.href = fileName;
+      }
     });
+  });
 }
 
 // Функция преобразования названия района в имя файла
 function getDistrictFileName(districtName) {
-    const map = {
-        "Наурызбайский": "district_nauryzbaiskiy.html",
-        "Алмалинский": "district_almalinskiy.html",
-        "Алатауский": "district_alatauskiy.html",
-        "Турксибский": "district_turksibskiy.html",
-        "Бостандыкский": "district_bostandikskiy.html",
-        "Медеуский": "district_medeuskiy.html",
-        "Ауэзовский": "district_auezovskiy.html",
-        "Жетысуский": "district_zhetysuskiy.html"
-    };
-    return map[districtName] || "vhod.html";
+  const map = {
+    Наурызбайский: "district_nauryzbaiskiy.html",
+    Алмалинский: "district_almalinskiy.html",
+    Алатауский: "district_alatauskiy.html",
+    Турксибский: "district_turksibskiy.html",
+    Бостандыкский: "district_bostandikskiy.html",
+    Медеуский: "district_medeuskiy.html",
+    Ауэзовский: "district_auezovskiy.html",
+    Жетысуский: "district_zhetysuskiy.html",
+  };
+  return map[districtName] || "vhod.html";
 }
 
 // Обновление дашборда (перегенерация данных, сортировка, перерисовка)
 function refreshDashboard() {
-    refreshAllData();
-    renderCards();
+  refreshAllData();
+  renderCards();
 }
 
 // Изменить сортировку
 function setSortBy(value) {
-    sortBy = value;
-    renderCards();
+  sortBy = value;
+  renderCards();
 }
 
 // Переключить порядок сортировки
 function toggleSortOrder() {
-    sortOrder = sortOrder === "desc" ? "asc" : "desc";
-    const btn = document.getElementById("sortOrderBtn");
-    if (btn) {
-        btn.innerHTML = sortOrder === "desc" ? "▼ По убыванию" : "▲ По возрастанию";
-    }
-    renderCards();
+  sortOrder = sortOrder === "desc" ? "asc" : "desc";
+  const btn = document.getElementById("sortOrderBtn");
+  if (btn) {
+    btn.innerHTML = sortOrder === "desc" ? "▼ По убыванию" : "▲ По возрастанию";
+  }
+  renderCards();
 }
 
 // Инициализация
 function init() {
-    refreshAllData();
-    renderCards();
-    
-    const refreshBtn = document.getElementById("refreshDashboardBtn");
-    if (refreshBtn) refreshBtn.addEventListener("click", refreshDashboard);
-    
-    const sortSelect = document.getElementById("sortSelect");
-    if (sortSelect) {
-        sortSelect.addEventListener("change", (e) => setSortBy(e.target.value));
-    }
-    
-    const sortOrderBtn = document.getElementById("sortOrderBtn");
-    if (sortOrderBtn) sortOrderBtn.addEventListener("click", toggleSortOrder);
-    
-    const logo = document.getElementById("logoPlace");
-    if (logo) logo.addEventListener("click", () => {
-        window.location.href = "index.html";
+  refreshAllData();
+  renderCards();
+
+  const refreshBtn = document.getElementById("refreshDashboardBtn");
+  if (refreshBtn) refreshBtn.addEventListener("click", refreshDashboard);
+
+  const sortSelect = document.getElementById("sortSelect");
+  if (sortSelect) {
+    sortSelect.addEventListener("change", (e) => setSortBy(e.target.value));
+  }
+
+  const sortOrderBtn = document.getElementById("sortOrderBtn");
+  if (sortOrderBtn) sortOrderBtn.addEventListener("click", toggleSortOrder);
+
+  const logo = document.getElementById("logoPlace");
+  if (logo)
+    logo.addEventListener("click", () => {
+      window.location.href = "vhod.html";
     });
 }
 

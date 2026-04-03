@@ -6,7 +6,7 @@ const DISTRICTS = [
   },
   {
     name: "Алмалинский",
-    img: "https://mitropolia.kz/images/01_cont/88/886/603.jpg",
+    img: "https://pohcdn.com/sites/default/files/styles/paragraph__hero_banner__hb_image__1880bp/public/hero_banner/Park_named_after_28_Panfilov_guardsmen.jpg",
   },
   {
     name: "Алатауский",

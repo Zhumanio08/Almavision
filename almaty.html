@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>Almavision — Город Алматы | Сводная статистика</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="almaty.css" />
+  </head>
+  <body>
+    <div class="app-bar">
+      <div class="logo-area" id="logoPlace">
+        <img
+          src="BCO.de1526a6-31f9-4310-a98c-7a4d59a73d9e.png"
+          alt="Логотип"
+          class="logo-img"
+        />
+        <span class="almavision-title">ALMAVISION</span>
+      </div>
+      <div class="logo-right">Алматы • Сводная статистика</div>
+    </div>
+
+    <div class="container">
+      <button class="back-btn" id="backBtn">
+        ← Вернуться к списку районов
+      </button>
+
+      <div class="district-header">
+        <div>
+          <h1>
+            Город Алматы
+            <span class="city-badge">Сводная статистика по 8 районам</span>
+          </h1>
+          <p class="subtitle">
+            Агрегированные данные на основе показателей всех районов города
+          </p>
+        </div>
+        <button id="refreshDataBtn" class="btn-update">Обновить данные</button>
+      </div>
+
+      <!-- График транспорта -->
+      <div class="chart-box">
+        <h3>Транспорт: средняя загруженность + средняя скорость (по часам)</h3>
+        <canvas id="transportChart"></canvas>
+      </div>
+
+      <!-- График экологии -->
+      <div class="chart-box">
+        <h3>Экология: средний AQI + средний PM2.5 (по часам)</h3>
+        <canvas id="ecoChart"></canvas>
+      </div>
+
+      <!-- KPI показатели города -->
+      <div class="kpi-section">
+        <h3>Средние KPI показатели по городу</h3>
+        <div class="kpi-grid" id="kpiGrid"></div>
+      </div>
+
+      <!-- Сводка по районам -->
+      <div class="districts-summary">
+        <h3>Показатели районов</h3>
+        <div class="cards-grid" id="districtsGrid"></div>
+      </div>
+
+      <!-- AI секция -->
+      <div class="ai-section">
+        <div class="ai-header">
+          <h3>ИИ-помощник акима</h3>
+          <button class="ai-generate-btn" id="aiAdviceBtn">
+            Сформировать совет
+          </button>
+        </div>
+        <div class="ai-advice-container" id="aiAdviceContainer">
+          <div class="ai-placeholder">
+            Нажмите кнопку для получения аналитики и рекомендаций на основе
+            средних данных по городу.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="almaty.js"></script>
+  </body>
+</html>

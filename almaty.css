@@ -1,0 +1,447 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  background: #f5f7fb;
+  color: #0f172a;
+  line-height: 1.4;
+}
+
+.app-bar {
+  background: white;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo-area {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-img {
+  height: 60px;
+  width: 85px;
+  border-radius: 30%;
+  object-fit: cover;
+}
+
+.almavision-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #2e7d32, #1565c0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #2e7d32, #1565c0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.logo-right {
+  background: #e8f5e9;
+  padding: 8px 18px;
+  border-radius: 40px;
+  font-weight: 600;
+  color: #2e7d32;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 28px 24px;
+}
+
+/* Кнопка назад */
+.back-btn {
+  background: none;
+  border: 1px solid #cbd5e1;
+  padding: 8px 20px;
+  border-radius: 40px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.back-btn:hover {
+  background: #f1f5f9;
+}
+
+/* Заголовок страницы */
+.district-header {
+  margin-bottom: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.district-header h1 {
+  font-size: 2rem;
+  color: #0f172a;
+}
+
+.subtitle {
+  color: #475569;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+/* Бейдж города */
+.city-badge {
+  background: linear-gradient(135deg, #3b82f6, #1e40af);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 40px;
+  font-size: 0.8rem;
+  display: inline-block;
+  margin-left: 12px;
+  vertical-align: middle;
+}
+
+/* Кнопка обновления */
+.btn-update {
+  background: #2e7d32;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-update:hover {
+  background: #1b5e20;
+}
+
+/* Графики */
+.chart-box {
+  background: white;
+  border-radius: 24px;
+  padding: 24px;
+  margin-bottom: 28px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.chart-box h3 {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+canvas {
+  max-height: 320px;
+  width: 100%;
+}
+
+/* KPI секция */
+.kpi-section {
+  background: white;
+  border-radius: 24px;
+  padding: 24px;
+  margin-bottom: 28px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.kpi-section h3 {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.kpi-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #deedfb;
+  border-radius: 16px;
+  font-size: 0.9rem;
+}
+
+.kpi-item .label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.kpi-item .value {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+/* Сводка по районам (для страницы города) */
+.districts-summary {
+  background: white;
+  border-radius: 24px;
+  padding: 24px;
+  margin-bottom: 28px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.districts-summary h3 {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Карточки районов (сетка) */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.district-card {
+  background: #f8fafc;
+  border-radius: 20px;
+  padding: 16px;
+  border-left: 6px solid;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.district-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.district-card .card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-weight: 500;
+  color: #475569;
+}
+
+.stat-value {
+  font-weight: 700;
+}
+
+/* Бейджи приоритета */
+.priority-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 40px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.priority-high {
+  background: #ffebee;
+  color: #d32f2f;
+}
+
+.priority-medium {
+  background: #fff3e0;
+  color: #ed6c02;
+}
+
+.priority-low {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+/* AI секция */
+.ai-section {
+  background: white;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.ai-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.ai-header h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.ai-generate-btn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.ai-generate-btn:hover {
+  background: #2563eb;
+}
+
+.ai-advice-container {
+  background: #eef2ff;
+  border-radius: 20px;
+  padding: 20px;
+  min-height: 200px;
+  border-left: 6px solid #3b82f6;
+}
+
+.ai-placeholder {
+  color: #475569;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.ai-advice-content {
+  line-height: 1.6;
+}
+
+.ai-advice-content .advice-header {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+  color: #1e293b;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 8px;
+}
+
+.ai-advice-content .stats-summary {
+  background: #ffffffcc;
+  padding: 16px;
+  border-radius: 16px;
+  margin: 16px 0;
+}
+
+.ai-advice-content .recommendations {
+  background: #dbeafe;
+  padding: 16px;
+  border-radius: 16px;
+  margin: 16px 0;
+}
+
+.ai-advice-content .forecast {
+  background: #f1f5f9;
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin-top: 12px;
+}
+
+.ai-advice-content .badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 40px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+/* Анимация загрузки */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #e2e8f0;
+  border-top: 3px solid #f55036;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Адаптив */
+@media (max-width: 700px) {
+  .container {
+    padding: 16px;
+  }
+  .district-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .ai-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .app-bar {
+    padding: 12px 16px;
+  }
+  .logo-area {
+    gap: 8px;
+  }
+  .logo-img {
+    height: 45px;
+    width: 65px;
+  }
+  .almavision-title,
+  .logo-text {
+    font-size: 1.1rem;
+  }
+  .logo-right {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+}

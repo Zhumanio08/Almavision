@@ -118,6 +118,33 @@ body {
   transition: 0.2s;
 }
 
+/* Кнопка общей статистики города */
+.btn-city-stats {
+  background: linear-gradient(135deg, #38863c, #0c4b36);
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-city-stats:hover {
+  background: linear-gradient(135deg, #0c4b36, #0c4b36);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-city-stats:active {
+  transform: translateY(0);
+}
+
 .btn-update:hover {
   background: #1b5e20;
 }

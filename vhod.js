@@ -214,4 +214,12 @@ function init() {
     });
 }
 
+// Кнопка общей статистики города
+const cityStatsBtn = document.getElementById("cityStatsBtn");
+if (cityStatsBtn) {
+  cityStatsBtn.addEventListener("click", () => {
+    window.location.href = "almaty.html";
+  });
+}
+
 init();

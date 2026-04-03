@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Алатауский район — углубленная статистика | Almavision</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="Nauryz.css">
+</head>
+<body>
+    <div class="app-bar">
+        <div class="logo-area">
+            <div class="logo-place" id="logoPlace"> 
+                <img src="BCO.de1526a6-31f9-4310-a98c-7a4d59a73d9e.png" alt="" class="img">
+                <span class="logo-text">ALMAVISION</span>
+            </div>
+        </div>
+        <div class="logo-right">Алматы • Управление городом</div>
+    </div>
+
+    <div class="container">
+        <div class="district-header">
+            <h1>Наурызбайский район</h1>
+            <p class="subtitle">Углубленная статистика</p>
+            <button class="btn-update" id="refreshDataBtn">Обновить данные</button>
+        </div>
+
+        <!-- ГРАФИК 1: Транспорт -->
+        <div class="chart-box">
+            <h3>Транспорт: загруженность + скорость потока (по часам)</h3>
+            <canvas id="transportChart" width="800" height="300"></canvas>
+        </div>
+
+        <!-- ГРАФИК 2: Экология -->
+        <div class="chart-box">
+            <h3>Экология: AQI + PM2.5 (по часам)</h3>
+            <canvas id="ecoChart" width="800" height="300"></canvas>
+        </div>
+
+        <!-- KPI ПОКАЗАТЕЛИ (сводная таблица) -->
+        <div class="kpi-section">
+            <h3>Сводная таблица показателей</h3>
+            <div class="kpi-grid" id="kpiGrid"></div>
+        </div>
+
+        <!-- AI СОВЕТ МЭРУ -->
+        <div class="ai-section">
+            <div class="ai-header">
+                <h3>AI-советник мэра</h3>
+                <button class="ai-generate-btn" id="aiAdviceBtn">Сформировать совет</button>
+            </div>
+            <div class="ai-advice-container" id="aiAdviceContainer">
+                <div class="ai-placeholder">
+                    Нажмите кнопку, чтобы получить аналитику и рекомендации на основе текущих данных
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="Nauryz.js"></script>
+</body>
+</html>

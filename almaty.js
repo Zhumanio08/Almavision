@@ -31,7 +31,7 @@ const DISTRICT_FILE_NAMES = {
   Жетысуский: "district_zhetysuskiy.html",
 };
 
-const GROQ_API_KEY = "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";
+const GROQ_API_KEY = "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";
 
 let districtData = {};
 let cityTimeSeries = null;

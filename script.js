@@ -1,4 +1,4 @@
-const GROQ_API_KEY = "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";
+const GROQ_API_KEY = "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";
 
 const DISTRICT_NAME = "Алатауский";
 const TIME_LABELS = [
